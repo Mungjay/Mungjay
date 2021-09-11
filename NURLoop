@@ -1,0 +1,59 @@
+Sub AAPleaseWork()
+Application.ScreenUpdating = False
+    Dim lastRow As Long
+    Dim wheretoend As Long
+    Dim rdhws As Worksheet
+    Dim cw As Long
+    
+    Dim loadcondition As Range
+    Dim loadstatus As Range
+    Dim uninvoicedstatus As Range
+    Dim invreleased As Range
+    Dim invcategory As Range
+    Dim invnotesQuestion As Range
+    
+
+    Set rdhws = Worksheets(1)
+
+    lastRow = Cells(Rows.Count, 1).End(xlUp).row
+    cw = 2
+
+    
+    Set invcategory = Cells(cw, 92)
+
+    Set loadcondition = Cells(cw, 7)
+    Set loadstatus = Cells(cw, 8)
+    Set uninvoicedstatus = Cells(cw, 14)
+    Set invreleased = Cells(cw, 90)
+
+
+
+    Dim op1 As String
+    opl = "Did load2 deliver?"
+
+    Dim op1ti As String
+    oplti = "Open event?"
+    
+    
+    For wheretoend = 2 To lastRow
+    
+           If loadcondition.Value = "Active" And _
+             loadstatus.Value = "Picked Up" And _
+             uninvoicedstatus.Value = "Issue - Aging load not delivered over 30 days" Then
+            invcategory.Value = opl
+    
+     Else
+         invcategory.Value = "elsethis"
+          End If
+
+
+ '   ActiveCell.Offset(1, 0).Range("A1").Select
+
+
+      
+    Next wheretoend
+      
+Application.ScreenUpdating = True
+End Sub
+
+
